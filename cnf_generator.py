@@ -12,7 +12,7 @@ class CNFGenerator:
                 neighbors.append((nx, ny))
         return neighbors
     
-    def generate(self, grid):
+    def generate_cnf(self, grid):
         rows, cols = len(grid), len(grid[0])
         var_map = {(nx, ny): nx * cols + ny + 1 for nx, ny in product(range(rows), range(cols))}
         cnf = []
