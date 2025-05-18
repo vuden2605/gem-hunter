@@ -1,0 +1,13 @@
+---------------Solution---------------
+T,T,G,2,T,T,G,1,T,T
+G,3,T,G,G,2,G,G,3,G
+G,G,2,T,G,G,G,2,G,T
+2,G,G,3,T,G,2,T,T,2
+T,T,T,G,2,T,G,G,3,G
+G,3,G,G,G,2,T,T,G,2
+G,G,G,1,G,G,G,3,T,T
+3,T,T,G,2,G,G,G,G,3
+T,T,3,G,T,T,2,T,T,G
+G,2,G,G,T,3,G,G,2,G
+
+Thời gian thực hiện: 0.0023 giây

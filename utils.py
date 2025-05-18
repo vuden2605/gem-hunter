@@ -1,4 +1,17 @@
-# utils.py
+def check_clause(clause, assignment):
+    for lit in clause:
+        var = abs(lit)
+        val = assignment.get(var, False)
+        if (lit > 0 and val) or (lit < 0 and not val):
+            return True
+    return False
+
+def check_cnf(cnf, assignment):
+    for clause in cnf:
+        if not check_clause(clause, assignment):
+            return False
+    return True
+
 def load_grid_from_file(filepath):
     grid = []
     with open(filepath, 'r') as f:
@@ -26,8 +39,11 @@ def write_output(filepath, assignments, var_map, original_grid):
             x, y = coord
             if original_grid[x][y] == '_':
                 output_grid[x][y] = 'T' if var > 0 else 'G'
+        else:
+            output_grid[x][y] = 'G'
 
     with open(filepath, 'w') as f:
+        f.write("---------------Solution---------------\n")
         for row in output_grid:
             f.write(','.join(row) + '\n')
 

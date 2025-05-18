@@ -1,0 +1,8 @@
+---------------Solution---------------
+T,3,G,T,2
+T,4,T,T,G
+T,G,3,G,3
+2,G,G,T,T
+T,1,G,3,T
+
+Thời gian thực hiện: 0.0002 giây
