@@ -1,38 +1,46 @@
-def solve_cnf_backtrack(clauses, assignment=None):
+def check_clause(clause, assignment):
+    for lit in clause:
+        var = abs(lit)
+        val = assignment.get(var, False)
+        if (lit > 0 and val) or (lit < 0 and not val):
+            return True
+    return False
+
+def check_cnf(cnf, assignment):
+    for clause in cnf:
+        if not check_clause(clause, assignment):
+            return False
+    return True
+def get_vars_in_cnf(cnf):
+    vars_set = set()
+    for clause in cnf:
+        for lit in clause:
+            vars_set.add(abs(lit))
+    return sorted(vars_set)
+
+def solve_cnf_backtrack(cnf, assignment=None, vars_list=None, idx=0):
+    if vars_list is None:
+        vars_list = get_vars_in_cnf(cnf)
     if assignment is None:
         assignment = {}
 
-    # Nếu CNF rỗng => thành công
-    if not clauses:
-        return assignment
+    if idx == len(vars_list):
+        if check_cnf(cnf, assignment):
+            return [v if assignment[v] else -v for v in vars_list]
+        else:
+            return None
 
-    # Nếu có mệnh đề rỗng => thất bại
-    if any(len(clause) == 0 for clause in clauses):
-        return None
+    var = vars_list[idx]
 
-    # Lấy biến chưa gán
-    vars_in_clauses = set(abs(lit) for clause in clauses for lit in clause)
-    unassigned_vars = vars_in_clauses - set(assignment.keys())
-    if not unassigned_vars:
-        return assignment
+    assignment[var] = True
+    res = solve_cnf_backtrack(cnf, assignment, vars_list, idx + 1)
+    if res is not None:
+        return res
 
-    var = unassigned_vars.pop()
+    assignment[var] = False
+    res = solve_cnf_backtrack(cnf, assignment, vars_list, idx + 1)
+    if res is not None:
+        return res
 
-    for value in [True, False]:
-        new_assignment = assignment.copy()
-        new_assignment[var] = value
-
-        # Thực hiện đơn giản hóa CNF với gán này
-        simplified = []
-        for clause in clauses:
-            if any((lit > 0 and new_assignment.get(abs(lit), None) == True) or
-                   (lit < 0 and new_assignment.get(abs(lit), None) == False) for lit in clause):
-                continue  # clause true với gán này, bỏ qua
-            new_clause = [lit for lit in clause if abs(lit) not in new_assignment]
-            simplified.append(new_clause)
-
-        result = solve_cnf_backtrack(simplified, new_assignment)
-        if result is not None:
-            return result
-
+    del assignment[var]
     return None
