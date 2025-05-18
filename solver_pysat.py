@@ -7,6 +7,6 @@ def solve_cnf_pysat(cnf_clauses):
         solver.add_clause(clause)
 
     if solver.solve():
-        return solver.get_model()  # list of literals (positive or negative)
+        return solver.get_model()  
     else:
         return None

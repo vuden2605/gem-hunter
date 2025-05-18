@@ -26,7 +26,7 @@ def solve_cnf_backtrack(cnf, assignment=None, vars_list=None, idx=0):
 
     if idx == len(vars_list):
         if check_cnf(cnf, assignment):
-            return [v if assignment[v] else -v for v in vars_list]
+            return assignment
         else:
             return None
 
