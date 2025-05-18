@@ -3,8 +3,8 @@ import os
 from brute_force import solve_cnf_bruteforce
 from backtrack import solve_cnf_backtrack
 from utils import read_input_file, write_output_file
-from solver_pysat import solve_cnf_pysat
 from cnf_generator import generate_cnf
+from solver_pysat import solve_cnf_pysat
 
 def write_assignment_to_file(path, assignment, rows, cols):
     """Ghi kết quả assignment vào file dưới dạng lưới (nếu có)."""
