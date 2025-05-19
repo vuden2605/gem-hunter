@@ -1,0 +1,1 @@
+Để chạy được chương trình, chạy câu lệnh python main.py 
