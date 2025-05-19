@@ -10,4 +10,4 @@ G,G,G,1,G,G,G,3,T,T
 T,T,3,G,T,T,2,T,T,G
 G,2,G,G,T,3,G,G,2,G
 
-Thời gian thực hiện: 0.0023 giây
+Thời gian thực hiện: 0.0012 giây

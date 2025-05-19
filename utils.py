@@ -39,9 +39,11 @@ def write_output(filepath, assignments, var_map, original_grid):
             x, y = coord
             if original_grid[x][y] == '_':
                 output_grid[x][y] = 'T' if var > 0 else 'G'
-        else:
-            output_grid[x][y] = 'G'
-
+        
+    for x in range(len(output_grid)):
+        for y in range(len(output_grid[0])):
+            if output_grid[x][y] == '_':
+                output_grid[x][y] = 'G'
     with open(filepath, 'w') as f:
         f.write("---------------Solution---------------\n")
         for row in output_grid:
