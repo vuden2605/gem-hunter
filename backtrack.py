@@ -4,10 +4,10 @@ def clause_unsatisfied(clause, assignment):
     for lit in clause:
         var = abs(lit)
         if var not in assignment:
-            return False  # chưa gán hết biến -> chưa chắc clause này sai
+            return False 
         if (lit > 0 and assignment[var]) or (lit < 0 and not assignment[var]):
-            return False  # clause thỏa mãn
-    return True  # tất cả literal đều sai -> clause không thỏa mãn
+            return False 
+    return True  
 
 def solve_cnf_backtrack(cnf, assignment=None, vars_list=None, idx=0):
     if vars_list is None:
@@ -19,7 +19,6 @@ def solve_cnf_backtrack(cnf, assignment=None, vars_list=None, idx=0):
     if assignment is None:
         assignment = {}
 
-    # Early pruning: nếu có clause nào không thể thỏa với assignment hiện tại -> quay lui
     for clause in cnf:
         if clause_unsatisfied(clause, assignment):
             return None
